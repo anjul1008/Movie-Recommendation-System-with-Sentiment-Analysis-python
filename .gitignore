@@ -2,3 +2,8 @@
 *.pyc
 data/old/
 data/kaggle/
+.vscode/
+.pytest_cache/
+.ipynb_checkpoints/
+
+app.py
