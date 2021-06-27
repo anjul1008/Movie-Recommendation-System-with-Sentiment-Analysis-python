@@ -10,6 +10,60 @@ Content Based Recommender System recommends movies similar to the movie user lik
 4. Go to your browser and type `http://127.0.0.1:5000/apidocs/` in the address bar.
 6. Hurray! That's it.
 
+## Dockerize your Application
+1.Use **Dockerfile** to create a Docker Image.
+
+```sh
+FROM ubuntu:16.04
+
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+        g++ \
+        bzip2 \
+        unzip \
+        make \
+        wget \
+        git \
+        python3 \
+        python3-dev \
+        python3-websockets \
+        python3-setuptools \
+        python3-pip \
+        python3-wheel \
+        zlib1g-dev \
+        patch \
+        ca-certificates \
+        swig \
+        cmake \
+        xz-utils \
+        automake \
+        autoconf \
+        libtool \
+        pkg-config 
+
+COPY . /app/server/.
+
+WORKDIR /app/server
+
+RUN pip3 install -r requirements.txt
+
+CMD python3 app_flasgger.py
+
+```
+
+2.Build the Docker Image
+
+`docker build -t {Name_of_your_Image}`
+
+3.Run your Docker Image
+
+`docker run -p 5000:5000 bank_auth`
+
+**Note**: bank_auth is a docker image name, you can name it anything!!
+
+Now your Docker Container is running at ` http://127.0.0.1:5000/docs` and this is the Swagger UI.
+
+
 ## Similarity Score : 
 
    How does it decide which item is most similar to the item user likes? Here we use the similarity scores.

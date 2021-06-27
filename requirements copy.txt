@@ -1,0 +1,7 @@
+numpy
+Flask
+flasgger
+scikit-learn
+pandas
+scipy
+streamlit
